@@ -1,17 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Home';
+import Send from './components/Send';
+import View from './components/View';
+import { WalletProvider } from './WalletContext';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
   return (
-    <div className='text-lg bg-blue-800'>
-      Hello
-    </div>
-      
-  )
-}
+    <WalletProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/send" element={<Send />} />
+          <Route path="/view" element={<View />} />
+        </Routes>
+      </Router>
+    </WalletProvider>
+  );
+};
 
-export default App
+export default App;
